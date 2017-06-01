@@ -7,19 +7,19 @@ import java.io.Serializable;
  */
 final class Counter implements Serializable {
 
-    private double count;
+    private long count;
 
     /**
      * explicitly set the counters value
      */
-    public void setCount(double value) {
+    public void setCount(long value) {
         count = value;
     }
 
     /**
      * return the counters value
      */
-    public double getCount() {
+    public long getCount() {
         return count;
     }
 
@@ -40,7 +40,7 @@ final class Counter implements Serializable {
     /**
      * increment the counters value and return it
      */
-    public double incrementAndReturn() {
+    public long incrementAndReturn() {
         return ++count;
     }
 }

@@ -9,40 +9,40 @@ final class MonInternals implements Serializable {
     /**
      * seed value to ensure that the first value always sets the max
      */
-    static final double MAX_DOUBLE = -Double.MAX_VALUE;
+    static final long MAX_DOUBLE = -Long.MAX_VALUE;
     /**
      * seed value to ensure that the first value always sets the min
      */
-    static final double MIN_DOUBLE = Double.MAX_VALUE;
+    static final long MIN_DOUBLE = Long.MAX_VALUE;
 
     MonKey key;
 
     /**
      * the total for all values
      */
-    double total = 0.0;
+    long total = 0;
     /**
      * The minimum of all values
      */
-    double min = MIN_DOUBLE;
+    long min = MIN_DOUBLE;
     /**
      * The maximum of all values
      */
-    double max = MAX_DOUBLE;
+    long max = MAX_DOUBLE;
     /**
      * The total number of occurrences/calls to this object
      */
-    double hits = 0.0;
+    long hits = 0;
 
-    double errors = 0.0;
+    long errors = 0;
     /**
      * Intermediate value used to calculate std dev
      */
-    double sumOfSquares = 0.0;
+    long sumOfSquares = 0;
     /**
      * The most recent value that was passed to this object
      */
-    double lastValue = 0.0;
+    long lastValue = 0;
     /**
      * The first time this object was accessed
      */
@@ -52,18 +52,18 @@ final class MonInternals implements Serializable {
      */
     long lastAccess = 0;
 
-    double maxActive = 0.0;
-    double totalActive = 0.0;
+    long maxActive = 0;
+    long totalActive = 0;
     boolean startHasBeenCalled = false;
     private ActivityStats activityStats;
 
-    double thisActiveTotal;
+    long thisActiveTotal;
 
     public void setActivityStats(ActivityStats stats) {
         this.activityStats = stats;
     }
 
-    public double incrementThisActive() {
+    public long incrementThisActive() {
         return activityStats.thisActive.incrementAndReturn();
     }
 
@@ -71,22 +71,22 @@ final class MonInternals implements Serializable {
         activityStats.thisActive.decrement();
     }
 
-    public void stop(double active) {
+    public void stop(long active) {
         totalActive += active;
         decrementThisActive();
     }
 
-    public double getThisActiveCount() {
+    public long getThisActiveCount() {
         return activityStats.thisActive.getCount();
     }
 
     public void reset() {
-        hits = errors = total = sumOfSquares = lastValue = 0.0;
+        hits = errors = total = sumOfSquares = lastValue = 0;
         firstAccess = lastAccess = 0;
         min = MIN_DOUBLE;
         max = MAX_DOUBLE;
         startHasBeenCalled = false;
-        maxActive = totalActive = 0.0;
+        maxActive = totalActive = 0;
         activityStats.thisActive.setCount(0);
         thisActiveTotal = 0;
     }

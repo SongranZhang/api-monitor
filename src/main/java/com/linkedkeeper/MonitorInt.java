@@ -2,7 +2,7 @@ package com.linkedkeeper;
 
 public interface MonitorInt {
 
-    Monitor add(double value);
+    Monitor add(long value);
 
     Monitor error();
 

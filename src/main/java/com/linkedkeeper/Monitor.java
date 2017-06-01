@@ -6,7 +6,7 @@ public abstract class Monitor implements MonitorInt, Serializable {
 
     // Internal data passed from monitor to monitor.
     protected MonInternals monData;
-    private double active;
+    private long active;
 
     protected Monitor(MonInternals monData) {
         this.monData = monData;
@@ -22,35 +22,35 @@ public abstract class Monitor implements MonitorInt, Serializable {
         }
     }
 
-    public double getHits() {
+    public long getHits() {
         synchronized (monData) {
             return monData.hits;
         }
     }
 
-    public double getErrors() {
+    public long getErrors() {
         synchronized (monData) {
             return monData.errors;
         }
     }
 
-    public double getTotal() {
+    public long getTotal() {
         synchronized (monData) {
             return monData.total;
         }
     }
 
-    public double getAvg() {
+    public long getAvg() {
         return avg(monData.total);
     }
 
-    public double getMin() {
+    public long getMin() {
         synchronized (monData) {
             return monData.min;
         }
     }
 
-    public double getMax() {
+    public long getMax() {
         synchronized (monData) {
             return monData.max;
         }
@@ -64,13 +64,13 @@ public abstract class Monitor implements MonitorInt, Serializable {
         return (String) getMonKey().getValue(MonKey.UNITS_HEADER);
     }
 
-    public double getLastValue() {
+    public long getLastValue() {
         synchronized (monData) {
             return monData.lastValue;
         }
     }
 
-    public double getLastAccess() {
+    public long getLastAccess() {
         synchronized (monData) {
             return monData.lastAccess;
         }
@@ -115,7 +115,7 @@ public abstract class Monitor implements MonitorInt, Serializable {
         return this;
     }
 
-    public Monitor add(double value) {
+    public Monitor add(long value) {
         synchronized (monData) {
             setAccessStats(System.currentTimeMillis());
 
@@ -141,19 +141,19 @@ public abstract class Monitor implements MonitorInt, Serializable {
         return this;
     }
 
-    public double getActive() {
+    public long getActive() {
         synchronized (monData) {
             return monData.getThisActiveCount();
         }
     }
 
-    public double getMaxActive() {
+    public long getMaxActive() {
         synchronized (monData) {
             return monData.maxActive;
         }
     }
 
-    private double avg(double value) {
+    private long avg(long value) {
         synchronized (monData) {
             if (monData.hits == 0)
                 return 0;
@@ -166,11 +166,11 @@ public abstract class Monitor implements MonitorInt, Serializable {
         synchronized (monData) {
             double stdDeviation = 0;
             if (monData.hits != 0) {
-                double sumOfX = monData.total;
-                double n = monData.hits;
-                double nMinus1 = (n <= 1) ? 1 : n - 1; // avoid 0 divides;
+                long sumOfX = monData.total;
+                long n = monData.hits;
+                long nMinus1 = (n <= 1) ? 1 : n - 1; // avoid 0 divides;
 
-                double numerator = monData.sumOfSquares
+                long numerator = monData.sumOfSquares
                         - ((sumOfX * sumOfX) / n);
                 stdDeviation = java.lang.Math.sqrt(numerator / nMinus1);
             }

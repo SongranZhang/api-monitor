@@ -24,7 +24,7 @@ public final class ActivityStats implements Serializable {
     /**
      * The number of primary monitors running
      */
-    public double getActive() {
+    public long getActive() {
         return thisActive.getCount();
     }
 }
