@@ -70,6 +70,12 @@ public abstract class Monitor implements MonitorInt, Serializable {
         }
     }
 
+    public double getLastAccess() {
+        synchronized (monData) {
+            return monData.lastAccess;
+        }
+    }
+
     public void setAccessStats(long now) {
         synchronized (monData) {
             if (monData.firstAccess == 0) {

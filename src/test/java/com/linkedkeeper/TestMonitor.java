@@ -24,7 +24,8 @@ public class TestMonitor {
                     + ", lastValue:" + mon.getLastValue()
                     + ", active:" + mon.getActive()
                     + ", maxActive:" + mon.getMaxActive()
-                    + ", stdDev:" + mon.getStdDev());
+                    + ", stdDev:" + mon.getStdDev()
+                    + ", lastAccess:" + mon.getLastAccess());
         }
     }
 }
