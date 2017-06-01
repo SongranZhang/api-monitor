@@ -17,7 +17,6 @@ public class FactoryEnabled implements MonitorFactoryInterface {
     private GetMonitor getMonitor;
     private int maxMonitors;
 
-    private static final boolean TIME_MONITOR = true;
     private static final int DEFAULT_MAP_SIZE = 500;
     private static final NullMonitor NULL_MON = new NullMonitor();
 
@@ -48,17 +47,17 @@ public class FactoryEnabled implements MonitorFactoryInterface {
     }
 
     private MonitorImp getTimeMonitor(MonKey key) {
-        return getMonitor(key, TIME_MONITOR);
+        return getMonitor(key);
     }
 
-    private MonitorImp getMonitor(MonKey key, boolean isTimePrimary) {
-        MonitorImp mon = getMonitor.getMon(key, isTimePrimary);
-        return isTimePrimary ? new TimeMon(key, mon.getMonInternals()) : new DecoMon(key, mon.getMonInternals());
+    private MonitorImp getMonitor(MonKey key) {
+        MonitorImp mon = getMonitor.getMon(key);
+        return new TimeMon(key, mon.getMonInternals());
     }
 
-    private MonitorImp createMon(MonKey key, boolean isTimeMonitor) {
+    private MonitorImp createMon(MonKey key) {
         ActivityStats activityStats = new ActivityStats(new Counter());
-        return new MonitorImp(key, activityStats, isTimeMonitor);
+        return new MonitorImp(key, activityStats);
     }
 
     private MonitorImp getExistingMonitor(MonKey key) {
@@ -70,13 +69,13 @@ public class FactoryEnabled implements MonitorFactoryInterface {
     }
 
     private class GetMonitor implements Serializable {
-        protected MonitorImp getMon(MonKey key, boolean isTimeMonitor) {
+        protected MonitorImp getMon(MonKey key) {
             MonitorImp mon = getExistingMonitor(key);
             if (mon == null) {
                 if (monitorThresholdReached()) {
                     return NULL_MON;
                 }
-                mon = createMon(key, isTimeMonitor);
+                mon = createMon(key);
                 MonitorImp tempMon = (MonitorImp) map.putIfAbsent(key, mon);
                 if (tempMon != null) {
                     mon = tempMon;

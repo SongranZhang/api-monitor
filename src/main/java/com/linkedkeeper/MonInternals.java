@@ -51,10 +51,6 @@ final class MonInternals implements Serializable {
      * The last time this object was accessed
      */
     long lastAccess = 0;
-    /**
-     * Is this a time monitor object? Used for performance optimizations
-     */
-    boolean isTimeMonitor = false;
 
     double maxActive = 0.0;
     double totalActive = 0.0;

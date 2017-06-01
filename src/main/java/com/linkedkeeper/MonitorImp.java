@@ -9,13 +9,12 @@ class MonitorImp extends Monitor {
     private static final MonKey NULL_MON_KEY = new NullMonKey();
 
     MonitorImp() {
-        this(NULL_MON_KEY, null, false);
+        this(NULL_MON_KEY, null);
     }
 
-    MonitorImp(MonKey key, ActivityStats activityStats, boolean isTimeMonitor) {
+    MonitorImp(MonKey key, ActivityStats activityStats) {
         this.monData.key = key;
         this.monData.setActivityStats(activityStats);
-        this.monData.isTimeMonitor = isTimeMonitor;
     }
 
     void setActivityStats(ActivityStats activityStats) {

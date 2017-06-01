@@ -5,8 +5,8 @@ import java.util.concurrent.ConcurrentMap;
 public class TestMonitor {
 
     public static void main(String[] args) throws Exception {
-        MonitorFactory.reset();
-        for (int i = 0; i < 1; i++) {
+//        MonitorFactory.reset();
+        for (int i = 0; i < 10; i++) {
             final String label = "sql" + i;
             new Mon(label).run();
         }

@@ -111,9 +111,7 @@ public abstract class Monitor implements MonitorInt, Serializable {
 
     public Monitor add(double value) {
         synchronized (monData) {
-            if (!monData.isTimeMonitor) {
-                setAccessStats(System.currentTimeMillis());
-            }
+            setAccessStats(System.currentTimeMillis());
 
             monData.lastValue = value;
             monData.hits++;
