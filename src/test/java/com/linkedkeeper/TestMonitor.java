@@ -20,12 +20,7 @@ public class TestMonitor {
                     + ", total:" + mon.getTotal()
                     + ", avg:" + mon.getAvg()
                     + ", min:" + mon.getMin()
-                    + ", max:" + mon.getMax()
-                    + ", lastValue:" + mon.getLastValue()
-                    + ", active:" + mon.getActive()
-                    + ", maxActive:" + mon.getMaxActive()
-                    + ", stdDev:" + mon.getStdDev()
-                    + ", lastAccess:" + mon.getLastAccess());
+                    + ", max:" + mon.getMax());
         }
     }
 }

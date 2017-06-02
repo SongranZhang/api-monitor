@@ -8,8 +8,4 @@ public interface MonKey {
 
     Object getValue(String primaryKey);
 
-    String getRangeKey();
-
-    int getSize();
-
 }

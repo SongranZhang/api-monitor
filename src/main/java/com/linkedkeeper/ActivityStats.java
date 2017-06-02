@@ -14,17 +14,4 @@ public final class ActivityStats implements Serializable {
         this.thisActive = thisActive;
     }
 
-    /**
-     * Creates a new instance of Counters
-     */
-    ActivityStats() {
-        this(new Counter());
-    }
-
-    /**
-     * The number of primary monitors running
-     */
-    public long getActive() {
-        return thisActive.getCount();
-    }
 }

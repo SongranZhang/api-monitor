@@ -37,16 +37,6 @@ public class MonKeyImp implements MonKey {
         return details;
     }
 
-    @Override
-    public String getRangeKey() {
-        return getUnits();
-    }
-
-    @Override
-    public int getSize() {
-        return summaryLabel.length();
-    }
-
     public Object getValue(String key) {
         if (LABEL_HEADER.equalsIgnoreCase(key))
             return getLabel();

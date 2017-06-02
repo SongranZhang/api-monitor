@@ -26,14 +26,5 @@ class MonitorImp extends Monitor {
         public Object getValue(String primaryKey) {
             return "";
         }
-
-        @Override
-        public String getRangeKey() {
-            return "";
-        }
-
-        public int getSize() {
-            return 1;
-        }
     }
 }
