@@ -4,12 +4,20 @@ import java.io.Serializable;
 
 public abstract class Monitor implements MonitorInt, Serializable {
 
+    private ThreadLocal<MonLog> threadLocal = new ThreadLocal<>();
     // Internal data passed from monitor to monitor.
     protected MonInternals monData;
     private long active;
 
     protected Monitor(MonInternals monData) {
         this.monData = monData;
+    }
+
+    public MonLog getLog() {
+        if (null == threadLocal.get()) {
+            threadLocal.set(new MonLog());
+        }
+        return threadLocal.get();
     }
 
     Monitor() {
@@ -98,6 +106,7 @@ public abstract class Monitor implements MonitorInt, Serializable {
     public Monitor start() {
         synchronized (monData) {
             active = monData.incrementThisActive();
+            getLog().setKey(getLabel());
         }
         return this;
     }
@@ -108,6 +117,7 @@ public abstract class Monitor implements MonitorInt, Serializable {
                 monData.maxActive = active;
             }
             monData.stop(active);
+            getLog().setCount(1);
         }
         return this;
     }
@@ -127,6 +137,8 @@ public abstract class Monitor implements MonitorInt, Serializable {
             if (value >= monData.max) {
                 monData.max = value;
             }
+
+            getLog().setElapsedTime(value);
         }
         return this;
     }
@@ -134,6 +146,7 @@ public abstract class Monitor implements MonitorInt, Serializable {
     public Monitor error() {
         synchronized (monData) {
             monData.errors++;
+            getLog().setProcessState(1);
         }
         return this;
     }

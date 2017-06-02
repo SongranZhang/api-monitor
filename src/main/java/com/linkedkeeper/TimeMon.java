@@ -12,6 +12,7 @@ public class TimeMon extends DecoMon {
     public Monitor start() {
         super.start();
         startTime = System.currentTimeMillis();
+        getLog().setTime(startTime);
         return this;
     }
 
@@ -19,7 +20,8 @@ public class TimeMon extends DecoMon {
     public Monitor stop() {
         long endTime = System.currentTimeMillis();
         setAccessStats(endTime);
-        add(endTime - startTime);
+        long elapsedTime = endTime - startTime;
+        add(elapsedTime);
         super.stop();
         return this;
     }

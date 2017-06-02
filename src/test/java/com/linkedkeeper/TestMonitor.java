@@ -35,7 +35,6 @@ class Mon {
 
     public void run() {
         for (int i = 1; i <= 10; i++) {
-
             Monitor mon = null;
             try {
                 mon = MonitorFactory.start(label);
@@ -49,6 +48,7 @@ class Mon {
             } finally {
                 mon.stop();
             }
+            System.out.println(mon.getLog().toString());
         }
     }
 }
