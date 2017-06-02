@@ -98,9 +98,6 @@ public abstract class Monitor implements MonitorInt, Serializable {
     public Monitor start() {
         synchronized (monData) {
             active = monData.incrementThisActive();
-            if (!monData.startHasBeenCalled) {
-                monData.startHasBeenCalled = true;
-            }
         }
         return this;
     }

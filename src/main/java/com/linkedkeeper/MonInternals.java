@@ -54,7 +54,6 @@ final class MonInternals implements Serializable {
 
     long maxActive = 0;
     long totalActive = 0;
-    boolean startHasBeenCalled = false;
     private ActivityStats activityStats;
 
     long thisActiveTotal;
@@ -85,7 +84,6 @@ final class MonInternals implements Serializable {
         firstAccess = lastAccess = 0;
         min = MIN_DOUBLE;
         max = MAX_DOUBLE;
-        startHasBeenCalled = false;
         maxActive = totalActive = 0;
         activityStats.thisActive.setCount(0);
         thisActiveTotal = 0;
