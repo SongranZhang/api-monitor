@@ -3,15 +3,7 @@ package com.linkedkeeper.log.agent;
 import com.linkedkeeper.log.agent.sender.Sender;
 import com.linkedkeeper.log.agent.sender.api.SenderFactory;
 import com.linkedkeeper.log.agent.utils.SleepUtil;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring-agent.xml")
 public class TestAgent {
 
     private final static SenderFactory sf = SenderFactory.getInstance();
@@ -19,11 +11,9 @@ public class TestAgent {
     private final static String key = "dataCollector";
     private final static String message = "Test Message No.";
 
-    @Autowired
-    private Sender sender;
+    private static Sender sender = new RpcSender();
 
-    @Test
-    public void test() {
+    public static void main(String[] args) {
         try {
             for (int i = 0; i < 500; i++) {
                 sf.offer(sender, key, message + i);
