@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public abstract class Monitor implements MonitorInt, Serializable {
 
-    private ThreadLocal<MonLog> threadLocal = new ThreadLocal<>();
+    private ThreadLocal<MonLog> threadLocal = new ThreadLocal<MonLog>();
     // Internal data passed from monitor to monitor.
     protected MonInternals monData;
     private long active;
