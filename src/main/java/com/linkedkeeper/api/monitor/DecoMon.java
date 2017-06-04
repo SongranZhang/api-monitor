@@ -1,4 +1,4 @@
-package com.linkedkeeper;
+package com.linkedkeeper.api.monitor;
 
 /**
  * This class is a wrapper for the internal data structure of a Monitor. It adds info specific to this monitor

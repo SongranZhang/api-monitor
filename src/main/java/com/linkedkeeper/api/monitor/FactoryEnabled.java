@@ -1,4 +1,4 @@
-package com.linkedkeeper;
+package com.linkedkeeper.api.monitor;
 
 import java.io.Serializable;
 import java.util.concurrent.ConcurrentHashMap;

@@ -1,4 +1,4 @@
-package com.linkedkeeper;
+package com.linkedkeeper.api.monitor;
 
 public class MonKeyImp implements MonKey {
 
